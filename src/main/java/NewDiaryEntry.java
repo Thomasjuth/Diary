@@ -1,4 +1,8 @@
+
+
 public class NewDiaryEntry {
+
+
 
     String title;
     String mainText;

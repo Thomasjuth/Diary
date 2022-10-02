@@ -4,9 +4,10 @@ public class NewDiaryEntry {
 
 
 
-    String title;
-    String mainText;
-    String date;
+    private String title;
+
+    private  String mainText;
+    private String date;
 
 
     public NewDiaryEntry() {

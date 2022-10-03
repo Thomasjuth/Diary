@@ -30,7 +30,7 @@ public class Menu {
 
 
             default:
-                System.out.println("hey");
+                System.out.println("You entered an invalid option");
                 break;
 
 

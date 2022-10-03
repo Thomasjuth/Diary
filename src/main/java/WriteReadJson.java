@@ -2,7 +2,6 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.File;
-import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.Date;
 import java.util.List;
@@ -30,10 +29,10 @@ public class WriteReadJson {
         //DATE IS SET AUTOMATICALLY AND ADDED TO OBJECT
         String theDate = date.toString();
         newDiaryEntry.setDate(theDate);
-
-        System.out.println(newDiaryEntry.getTitle());
-        System.out.println(newDiaryEntry.getMainText());
-        System.out.println(newDiaryEntry.getDate());
+//
+//        System.out.println(newDiaryEntry.getTitle());
+//        System.out.println(newDiaryEntry.getMainText());
+//        System.out.println(newDiaryEntry.getDate());
 
         //Creating ObjectMapper object
         ObjectMapper mapper = new ObjectMapper();
@@ -54,18 +53,23 @@ public class WriteReadJson {
     }
 
 
-    public static void readEntryList() throws IOException {
+    public static void readEntryList() {
 
         ObjectMapper mapper = new ObjectMapper();
 
-        List<Users> usersList = mapper.readValue(new File("src/main/resources/emp.json"), new TypeReference<List<Users>>() {
-        });
-        for (Users i : usersList) {
+        try {
+            List<NewDiaryEntry> entryList = mapper.readValue(new File("src/main/resources/diaryEntries.json"), new TypeReference<List<NewDiaryEntry>>() {
+            });
+
+            for (NewDiaryEntry i : entryList) {
 
 
+            }
+
+
+        } catch (Exception e) {
 
         }
+    }
 
-
-}
 }

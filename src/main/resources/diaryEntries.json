@@ -1,1 +1,22 @@
-[]
+[
+  {
+    "title": "Thomas",
+    "¬mainText": "Juth",
+    "date": "Tue Oct 04 16:43:32 CEST 2022"
+  },
+  {
+    "title": "Fredrik",
+    "mainText": "Juth",
+    "date": "Tue Oct 04 16:43:44 CEST 2022"
+  },
+  {
+    "title": "Robert Juth",
+    "mainText": "Robert Juth",
+    "date": "Tue Oct 04 16:44:11 CEST 2022"
+  },
+  {
+    "title": "Erika",
+    "mainText": "Mattsson",
+    "date": "Tue Oct 04 16:45:12 CEST 2022"
+  }
+]

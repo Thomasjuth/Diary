@@ -1,1 +1,17 @@
-[{"title":"One ","mainText":"One two three","date":"Tue Oct 04 14:22:49 CEST 2022"},{"title":"1","mainText":"1","date":"Tue Oct 04 14:23:21 CEST 2022"},{"title":"HERE IT IS","mainText":"MOTHER FOCKER","date":"Tue Oct 04 14:23:30 CEST 2022"}]
+[
+  {
+    "title": "Thomas",
+    "mainText": "Juth",
+    "date": "Tue Oct 04 16:43:32 CEST 2022"
+  },
+  {
+    "title": "Fredrik",
+    "mainText": "Juth",
+    "date": "Tue Oct 04 16:43:44 CEST 2022"
+  },
+  {
+    "title": "Robert Juth",
+    "mainText": "Robert Juth",
+    "date": "Tue Oct 04 16:44:11 CEST 2022"
+  }
+]

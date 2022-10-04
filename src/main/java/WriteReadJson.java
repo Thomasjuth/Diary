@@ -1,4 +1,5 @@
 import com.fasterxml.jackson.databind.ObjectMapper;
+import model.NewDiaryEntry;
 
 import java.io.IOException;
 import java.nio.file.Paths;

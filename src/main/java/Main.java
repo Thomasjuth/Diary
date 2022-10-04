@@ -1,4 +1,5 @@
 import com.fasterxml.jackson.databind.ObjectMapper;
+import model.NewDiaryEntry;
 
 import java.io.IOException;
 import java.nio.file.Paths;
@@ -12,17 +13,14 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
 
-        ObjectMapper mapper = new ObjectMapper();
+
         NewDiaryEntry newDiaryEntry = new NewDiaryEntry();
         List<NewDiaryEntry> entryList = new ArrayList<>();
 
-        WriteReadJson.writeToJson(entryList);
-        List<NewDiaryEntry> tempList = List.of(mapper.readValue(Paths.get("src/main/resources/diaryEntries.json").toFile(), NewDiaryEntry[].class));
-
-        for(NewDiaryEntry entry : tempList){
-
-            System.out.println(tempList.toArray());
-        }
+        
+        ObjectMapper mapper = new ObjectMapper();
+      List<NewDiaryEntry> tempList = List.of(mapper.readValue(Paths.get("src/main/resources/diaryEntries.json").toFile(), NewDiaryEntry[].class));
+        entryList.addAll(tempList);
 
 
 
@@ -34,7 +32,7 @@ public class Main {
                 presentOptions();
                 String userChoice = scanner.nextLine();
 
-                runProgram = Menu.menu2(userChoice, true, entryList);
+                runProgram = Menu.menu2(userChoice, true, entryList, tempList);
 
 
             }

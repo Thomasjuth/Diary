@@ -1,3 +1,5 @@
+import model.NewDiaryEntry;
+
 import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
@@ -5,7 +7,7 @@ import java.util.Scanner;
 public class UserInput {
 
 
-        public static void userInput(NewDiaryEntry newDiaryEntry, List<NewDiaryEntry> entryList) {
+        public static void userInput(NewDiaryEntry newDiaryEntry, List<NewDiaryEntry> entryList, List<NewDiaryEntry> tempList) {
 
             Scanner scanner = new Scanner(System.in);
             String userChoice = scanner.nextLine();
@@ -29,7 +31,10 @@ public class UserInput {
         System.out.println(newDiaryEntry.getMainText());
         System.out.println(newDiaryEntry.getDate());
 
+
+
         NewDiaryEntry.addToEntryList(newDiaryEntry, entryList);
+
 
         WriteReadJson.writeToJson(entryList);
 

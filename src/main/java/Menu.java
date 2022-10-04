@@ -1,3 +1,5 @@
+import model.NewDiaryEntry;
+
 import java.io.IOException;
 import java.util.List;
 
@@ -5,7 +7,7 @@ public class Menu {
 
 
 
-    public static boolean menu2(String userChoice, boolean runProgram, List<NewDiaryEntry> entryList) throws IOException {
+    public static boolean menu2(String userChoice, boolean runProgram, List<NewDiaryEntry> entryList, List<NewDiaryEntry> tempList) throws IOException {
         switch (userChoice) {
 
             case "1":
@@ -20,7 +22,7 @@ public class Menu {
             case "2":
 
                 NewDiaryEntry newDiaryEntry = new NewDiaryEntry();
-                UserInput.userInput(newDiaryEntry, entryList);
+                UserInput.userInput(newDiaryEntry, entryList, tempList);
 
                 runProgram = true;
 

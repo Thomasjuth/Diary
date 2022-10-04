@@ -1,10 +1,11 @@
 import java.io.IOException;
+import java.util.List;
 
 public class Menu {
 
 
 
-    public static boolean menu2(String userChoice, boolean runProgram) throws IOException {
+    public static boolean menu2(String userChoice, boolean runProgram, List<NewDiaryEntry> entryList) throws IOException {
         switch (userChoice) {
 
             case "1":
@@ -15,10 +16,11 @@ public class Menu {
                 break;
 
                 //TAKES USER INPUT AND WRITES TO JSON FILES
+
             case "2":
 
                 NewDiaryEntry newDiaryEntry = new NewDiaryEntry();
-                WriteReadJson.UserInputIntoJson(newDiaryEntry);
+                UserInput.userInput(newDiaryEntry, entryList);
 
                 runProgram = true;
 

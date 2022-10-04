@@ -1,47 +1,22 @@
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import java.io.File;
+import java.io.IOException;
 import java.nio.file.Paths;
-import java.util.Date;
 import java.util.List;
-import java.util.Scanner;
 
 public class WriteReadJson {
 
 
-    public static void UserInputIntoJson(NewDiaryEntry newDiaryEntry) {
 
+    public static void writeToJson(List entryList){
 
-        Scanner scanner = new Scanner(System.in);
-        Date date = new Date();
-
-
-        //USER INPUT IS STORED INTO OBJECT
-        System.out.println("Enter the Title: ");
-        newDiaryEntry.setTitle(scanner.nextLine());
-
-
-        //USER INPUT IS STORED INTO OBJECT
-        System.out.println("Now, please us about your day: ");
-        newDiaryEntry.setMainText(scanner.nextLine());
-
-        //DATE IS SET AUTOMATICALLY AND ADDED TO OBJECT
-        String theDate = date.toString();
-        newDiaryEntry.setDate(theDate);
-//
-//        System.out.println(newDiaryEntry.getTitle());
-//        System.out.println(newDiaryEntry.getMainText());
-//        System.out.println(newDiaryEntry.getDate());
-
-        //Creating ObjectMapper object
         ObjectMapper mapper = new ObjectMapper();
 
 
         try {
 
 //
-            mapper.writeValue(Paths.get("src/Main/resources/diaryEntries.json").toFile(), newDiaryEntry);
+            mapper.writeValue(Paths.get("src/Main/resources/diaryEntries.json").toFile(), entryList);
 
 
         } catch (Exception e) {
@@ -50,26 +25,30 @@ public class WriteReadJson {
         }
 
 
+
     }
 
 
-    public static void readEntryList() {
+
+
+    public static List readEntryList() throws IOException {
 
         ObjectMapper mapper = new ObjectMapper();
 
-        try {
-            List<NewDiaryEntry> entryList = mapper.readValue(new File("src/main/resources/diaryEntries.json"), new TypeReference<List<NewDiaryEntry>>() {
-            });
+            List<NewDiaryEntry> entryList = List.of(mapper.readValue(Paths.get("src/main/resources/diaryEntries.json").toFile(), NewDiaryEntry[].class));
 
-            for (NewDiaryEntry i : entryList) {
+
+            for (NewDiaryEntry entry : entryList) {
+
+                System.out.println(entry.getTitle());
+                System.out.println(entry.getMainText());
+                System.out.println(entry.getDate());
 
 
             }
 
 
-        } catch (Exception e) {
-
-        }
+        return entryList;
     }
 
 }

@@ -1,4 +1,4 @@
-
+import java.util.List;
 
 public class NewDiaryEntry {
 
@@ -36,5 +36,13 @@ public class NewDiaryEntry {
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+
+    public static void addToEntryList(NewDiaryEntry newDiaryEntry, List entryList){
+
+        entryList.add(newDiaryEntry);
+
+
     }
 }

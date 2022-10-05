@@ -79,9 +79,9 @@ public class WriteReadJson {
 
 
 
-    public static void printDiaryList(NewDiaryEntry newDiaryEntry) {
+    public static void printDiaryList(NewDiaryEntry newDiaryEntry, List<Diary> diaryList ) {
 
-        for (Diary diaries : DiaryList) {
+        for (Diary diaries : diaryList) {
 
             System.out.println(newDiaryEntry.getTitle());
             System.out.println(newDiaryEntry.getMainText());

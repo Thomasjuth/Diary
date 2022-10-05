@@ -16,6 +16,8 @@ private Date dateTimeStamp;
         this.diaryList = new ArrayList<>();
     }
 
+    public Diary() {
+    }
 
     public User getUser(User user) {
         return user;

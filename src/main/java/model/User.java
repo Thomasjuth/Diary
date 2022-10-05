@@ -1,5 +1,6 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class User {
@@ -15,6 +16,7 @@ public class User {
         Username = username;
         this.activeUser = activeUser;
         this.user = user;
+        this.userList = new ArrayList<>();
     }
 
 

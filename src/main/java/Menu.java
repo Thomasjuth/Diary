@@ -8,13 +8,15 @@ import java.util.Scanner;
 public class Menu {
 
 
-    public static boolean switchMenu1(boolean runProgram, List<User> userList, List<Diary> diaryList){
+    public static boolean switchMenu1(boolean runProgram, List<User> userList, List<Diary> diaryList, User user){
 
         Scanner scanner = new Scanner (System.in);
 
         String userChoice1 = scanner.nextLine();
 
         switch (userChoice1) {
+
+            //USER CAN CREATE A NEW USERNAME
 
             case "1":
                 System.out.println("Please type in your desired user name");
@@ -24,9 +26,9 @@ public class Menu {
                 WriteReadJson.UsersToJason(userList);
                 Diary newDiary = new Diary(newUser);
                 diaryList.add(newDiary);
-                System.out.println("This diary belongs to " + newUser);
+                System.out.println("This diary belongs to " + newUser.getUsername());
                 try {
-                    switchMenu2(true);
+                    switchMenu2(true, userList, diaryList, newUser);
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
@@ -34,6 +36,7 @@ public class Menu {
                 break;
 
 
+                //PRINT OUT USERS AND ASK USER TO CHOOSE ONE. THEN GO TO SWITCHMENU 2
             case "2":
 
                 for(User users: userList){
@@ -46,20 +49,27 @@ public class Menu {
 
                 for(User users: userList){
 
-                    if (activeUser.equalsIgnoreCase(users){
+                    if (users.getUsername().equalsIgnoreCase(activeUser)) {
 
+                        users.setActiveUser(activeUser);
+
+                        System.out.println("This diary belongs to " + users.getActiveUser());
+
+                        try {
+                            switchMenu2(true, userList, diaryList, user);
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
+                        runProgram = true;
+                        break;
 
                     }
-
-
 
                 }
 
 
 
-                runProgram = true;
-                break;
-
+                //Exit Program
 
             case "3":
 
@@ -76,27 +86,49 @@ public class Menu {
 
 
 
-    public static boolean switchMenu2(boolean runProgram) throws IOException {
+    public static boolean switchMenu2(boolean runProgram, List<User> userList, List<Diary> diaryList, User user) throws IOException {
 
         Scanner scanner = new Scanner (System.in);
         String userChoice2 = scanner.nextLine();
 
         switch (userChoice2) {
 
+            //PRESENTS OLD DIARY ENTRIES
+
             case "1":
 
                 //READS FROM JSON FILE
-                WriteReadJson.DiaryFromJason();
+                diaryList = WriteReadJson.DiaryFromJason();
+                NewDiaryEntry diaryEntry = new NewDiaryEntry();
+                for(Diary entries: diaryList){
+
+                    System.out.println("Title " +diaryEntry.getTitle() );
+                    System.out.println("Main Text " +diaryEntry.getMainText() );
+                    System.out.println("User " + diaryEntry.getUser());
+                    System.out.println("Date " + diaryEntry.getDate());
+
+                }
+
                 runProgram = true;
                 break;
 
-                //TAKES USER INPUT AND WRITES TO JSON FILES
+
 
             case "2":
 
-                NewDiaryEntry newDiaryEntry = new NewDiaryEntry();
-                UserInput.userInput(newDiaryEntry, entryList);
 
+             user.getUsername();
+                System.out.println(user.toString() + "GASGGSGSGSGSD");
+             NewDiaryEntry newDiaryEntry = new NewDiaryEntry();
+                System.out.println("Please enter title");
+                newDiaryEntry.setTitle(scanner.nextLine());
+
+                System.out.println("Please enter main text");
+                newDiaryEntry.setMainText(scanner.nextLine());
+
+
+
+                Menu.switchMenu2(true, userList, diaryList, user);
                 runProgram = true;
                 break;
 

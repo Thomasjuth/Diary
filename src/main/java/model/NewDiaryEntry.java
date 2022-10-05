@@ -3,7 +3,6 @@ package model;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import java.util.Scanner;
 
 public class NewDiaryEntry {
 
@@ -26,7 +25,10 @@ public class NewDiaryEntry {
         this.dateTimeStamp = Calendar.getInstance().getTime();
     }
 
+
     public NewDiaryEntry(User user) {
+        this.user = user;
+        this.dateTimeStamp = Calendar.getInstance().getTime();
     }
 
 
@@ -80,41 +82,7 @@ public class NewDiaryEntry {
 
     }
 
-    public static void userInput(NewDiaryEntry newDiaryEntry, List<Diary> entryList, User activeUser) {
 
-        Scanner scanner = new Scanner(System.in);
-        User user = new User();
-        Date date = new Date();
-
-
-        System.out.println("Title: ");
-        newDiaryEntry.setTitle(scanner.nextLine());
-
-        //USER INPUT IS STORED INTO OBJECT
-        System.out.println("Now, please us about your day: ");
-        newDiaryEntry.setMainText(scanner.nextLine());
-
-        //DATE IS SET AUTOMATICALLY AND ADDED TO OBJECT
-        String theDate = date.toString();
-        newDiaryEntry.setDate(theDate);
-
-
-        System.out.println("here");
-        System.out.println(newDiaryEntry.getTitle());
-        System.out.println(newDiaryEntry.getMainText());
-        System.out.println(newDiaryEntry.getDate());
-        System.out.println(newDiaryEntry.getUser());
-
-
-        NewDiaryEntry.addToDiaryList(newDiaryEntry, entryList);
-
-        WriteReadJson.writeToJson(entryList);
-
-
-
-    }
-
-}
 
 
 }

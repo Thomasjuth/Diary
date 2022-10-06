@@ -1,14 +1,18 @@
+import com.fasterxml.jackson.databind.ObjectMapper;
 import model.NewDiaryEntry;
 import model.User;
 
+import java.io.EOFException;
 import java.io.IOException;
+import java.nio.file.Paths;
 import java.util.List;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class Menu {
 
 
-    public static boolean switchMenu1(String choice, boolean runProgram, List<User> userList, List<Diary> diaryList){
+    public static boolean switchMenu1(String choice, boolean runProgram, List<User> userList, List<Diary> diaryList) throws EOFException {
 
         Scanner scanner = new Scanner (System.in);
 
@@ -36,21 +40,23 @@ public class Menu {
                 //PRINT OUT USERS AND ASK USER TO CHOOSE ONE. THEN GO TO SWITCHMENU 2
             case "2":
 
-                for(User users: userList){
+                List<User> tempList = Main.tempListCreationUsers();
 
-                    System.out.println(users.getUser());
+                for(User item: tempList){
+
+                    System.out.println(item.getUsername());
                 }
 
                 System.out.println("Please choose userName. Type in to continue");
                 String activeUser = scanner.nextLine();
 
-                for(User users: userList){
+                for(User item: tempList){
 
-                    if (users.getUsername().equalsIgnoreCase(activeUser)) {
+                    if (item.getUsername().equalsIgnoreCase(activeUser)) {
 
-                        users.setActiveUser(activeUser);
+                        item.setActiveUser(activeUser);
 
-                        System.out.println("This diary belongs to " + users.getActiveUser());
+                        System.out.println("This diary belongs to " + User.getActiveUser());
 
                             optionsMenu2();
 
@@ -90,41 +96,42 @@ public class Menu {
 
             case "1":
 
+                ObjectMapper mapper = new ObjectMapper();
+
                 //READS FROM JSON FILE
-                diaryList = WriteReadJson.DiaryFromJason();
-                NewDiaryEntry diaryEntry = new NewDiaryEntry();
-                for(Diary entries: diaryList){
+                List<Diary> tempList = List.of(mapper.readValue(Paths.get("src/main/resources/diaryEntries").toFile(), Diary.class));
 
-                    System.out.println("Title " +diaryEntry.getTitle() );
-                    System.out.println("Main Text " +diaryEntry.getMainText() );
-                    System.out.println("User " + diaryEntry.getUser());
-                    System.out.println("Date " + diaryEntry.getDate());
-
+                for (Diary diary : tempList) {
+                    if (Objects.equals(User.getActiveUser(), diary.getUser().getUsername())) {
+                        for (Diary correctDiary : tempList) {
+                            correctDiary.printDiary();
+                        }
+                    }
                 }
 
-
+                optionsMenu2();
                 break;
-
 
 
             case "2":
 
-
-                System.out.println(user.toString() + "GASGGSGSGSGSD");
                  NewDiaryEntry newDiaryEntry = new NewDiaryEntry();
+                 scanner.nextLine();
                 System.out.println("Please enter title");
                 newDiaryEntry.setTitle(scanner.nextLine());
 
                 System.out.println("Please enter main text");
                 newDiaryEntry.setMainText(scanner.nextLine());
 
-
-
+                optionsMenu2();
                 break;
 
             case "3":
-                return false;
+                optionsMenu1();
+                break;
 
+            case "4":
+                break;
 
             default:
                 System.out.println("You entered an invalid option");
@@ -158,7 +165,8 @@ public class Menu {
         System.out.println("Please choose one of the options below by typing a number");
         System.out.println("1. Read previous entries");
         System.out.println("2. Add new entry");
-        System.out.println("3. Quit Programme");
+        System.out.println("3. Go back to the first menu");
+        System.out.println("4. Quit Programme");
 
         Scanner scanner = new Scanner(System.in);
 

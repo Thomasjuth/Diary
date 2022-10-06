@@ -1,5 +1,9 @@
+import com.fasterxml.jackson.databind.ObjectMapper;
+import model.NewDiaryEntry;
 import model.User;
 
+import java.io.IOException;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -19,7 +23,7 @@ private Date dateTimeStamp;
     public Diary() {
     }
 
-    public User getUser(User user) {
+    public User getUser() {
         return user;
     }
 
@@ -42,4 +46,33 @@ private Date dateTimeStamp;
     public void setDateTimeStamp(Date dateTimeStamp) {
         this.dateTimeStamp = dateTimeStamp;
     }
+
+
+    public static void printDiary () {
+
+        ObjectMapper mapper = new ObjectMapper();
+
+        try {
+            List<NewDiaryEntry> printList = (List.of(mapper.readValue(Paths.get("src/main/resources/diaryEntries.json").toFile(),NewDiaryEntry.class)));
+
+            for(NewDiaryEntry item: printList){
+
+                System.out.println(item.getTitle());
+                System.out.println(item.getMainText());
+                System.out.println(item.getDate());
+                System.out.println(item.getUser());
+
+            }
+
+
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+
+    }
+
 }
+
+

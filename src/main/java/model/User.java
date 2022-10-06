@@ -6,8 +6,8 @@ import java.util.List;
 public class User {
 
     private String Username;
-    private String activeUser;
-    private String user;
+    private static String activeUser;
+    private static String activeUserName;
 
     private List<User> userList;
 
@@ -15,7 +15,7 @@ public class User {
     public User(String username, String activeUser, String user) {
         Username = username;
         this.activeUser = activeUser;
-        this.user = user;
+        this.activeUserName = user;
         this.userList = new ArrayList<>();
     }
 
@@ -30,7 +30,6 @@ public class User {
     public User() {
     }
 
-
     public String getUsername() {
         return Username;
     }
@@ -39,27 +38,29 @@ public class User {
         Username = username;
     }
 
-    public String getActiveUser() {
+    public static String getActiveUser() {
         return activeUser;
     }
 
-    public void setActiveUser(String activeUser) {
-        this.activeUser = activeUser;
+    public static void setActiveUser(String activeUser) {
+        User.activeUser = activeUser;
     }
 
-    public String getUser() {
-        return user;
+    public static String getActiveUserName() {
+        return activeUserName;
     }
 
-    public void setUser(String user) {
-        this.user = user;
+    public static void setActiveUserName(String activeUserName) {
+        User.activeUserName = activeUserName;
     }
 
+    public List<User> getUserList() {
+        return userList;
+    }
 
-
-
-
-
+    public void setUserList(List<User> userList) {
+        this.userList = userList;
+    }
 }
 
 

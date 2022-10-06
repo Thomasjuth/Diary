@@ -8,13 +8,13 @@ import java.util.Scanner;
 public class Menu {
 
 
-    public static boolean switchMenu1(boolean runProgram, List<User> userList, List<Diary> diaryList, User user){
+    public static boolean switchMenu1(String choice, boolean runProgram, List<User> userList, List<Diary> diaryList){
 
         Scanner scanner = new Scanner (System.in);
 
-        String userChoice1 = scanner.nextLine();
 
-        switch (userChoice1) {
+
+        switch (choice) {
 
             //USER CAN CREATE A NEW USERNAME
 
@@ -27,12 +27,9 @@ public class Menu {
                 Diary newDiary = new Diary(newUser);
                 diaryList.add(newDiary);
                 System.out.println("This diary belongs to " + newUser.getUsername());
-                try {
-                    switchMenu2(true, userList, diaryList, newUser);
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
-                runProgram = true;
+
+                    optionsMenu2();
+
                 break;
 
 
@@ -55,12 +52,9 @@ public class Menu {
 
                         System.out.println("This diary belongs to " + users.getActiveUser());
 
-                        try {
-                            switchMenu2(true, userList, diaryList, user);
-                        } catch (IOException e) {
-                            throw new RuntimeException(e);
-                        }
-                        runProgram = true;
+                            optionsMenu2();
+
+
                         break;
 
                     }
@@ -69,7 +63,6 @@ public class Menu {
 
 
 
-                //Exit Program
 
             case "3":
 
@@ -86,12 +79,12 @@ public class Menu {
 
 
 
-    public static boolean switchMenu2(boolean runProgram, List<User> userList, List<Diary> diaryList, User user) throws IOException {
+    public static boolean switchMenu2(String choice, boolean runProgram, List<Diary> diaryList, User user) throws IOException {
 
         Scanner scanner = new Scanner (System.in);
-        String userChoice2 = scanner.nextLine();
 
-        switch (userChoice2) {
+
+        switch (choice) {
 
             //PRESENTS OLD DIARY ENTRIES
 
@@ -109,7 +102,7 @@ public class Menu {
 
                 }
 
-                runProgram = true;
+
                 break;
 
 
@@ -117,9 +110,8 @@ public class Menu {
             case "2":
 
 
-             user.getUsername();
                 System.out.println(user.toString() + "GASGGSGSGSGSD");
-             NewDiaryEntry newDiaryEntry = new NewDiaryEntry();
+                 NewDiaryEntry newDiaryEntry = new NewDiaryEntry();
                 System.out.println("Please enter title");
                 newDiaryEntry.setTitle(scanner.nextLine());
 
@@ -128,8 +120,6 @@ public class Menu {
 
 
 
-                Menu.switchMenu2(true, userList, diaryList, user);
-                runProgram = true;
                 break;
 
             case "3":
@@ -147,23 +137,35 @@ public class Menu {
 
 
 
-    public static void optionsMenu1() {
+    public static String optionsMenu1() {
 
-        //USER IS PRESENTED WITH OPTIONS
-        System.out.println("Please choose one of the options below by typing a number");
-        System.out.println("1. Register a new user");
-        System.out.println("2. Choose name from list");
-        System.out.println("3. Quit Programme");
+            System.out.println("Please choose one of the options below by typing a number");
+            System.out.println("1. Register a new user");
+            System.out.println("2. Choose name from list");
+            System.out.println("3. Quit Programme");
+             Scanner scanner = new Scanner(System.in);
+
+            String choice = scanner.nextLine();
+            return choice;
+
+            }
 
 
-    }
-    public static void optionsMenu2() {
+
+    public static String optionsMenu2() {
 
         //USER IS PRESENTED WITH OPTIONS
         System.out.println("Please choose one of the options below by typing a number");
         System.out.println("1. Read previous entries");
         System.out.println("2. Add new entry");
         System.out.println("3. Quit Programme");
+
+        Scanner scanner = new Scanner(System.in);
+
+        String choice2 = scanner.nextLine();
+
+
+        return choice2;
     }
 
 }

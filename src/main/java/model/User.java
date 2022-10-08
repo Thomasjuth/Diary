@@ -1,11 +1,15 @@
 package model;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import java.io.IOException;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
 public class User {
 
-    private String Username;
+    private String username;
     private static String activeUser;
     private static String activeUserName;
 
@@ -13,33 +17,31 @@ public class User {
 
 
     public User(String username, String activeUser, String user) {
-        Username = username;
+        this.username = username;
         this.activeUser = activeUser;
         this.activeUserName = user;
         this.userList = new ArrayList<>();
     }
 
 
-
-
-
-    public User(String username) {
-        Username = username;
-    }
-
     public User() {
+
     }
+
+
 
     public String getUsername() {
-        return Username;
+        return username;
     }
 
-    public void setUsername(String username) {
-        Username = username;
-    }
+
 
     public static String getActiveUser() {
         return activeUser;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public static void setActiveUser(String activeUser) {
@@ -58,10 +60,43 @@ public class User {
         return userList;
     }
 
-    public void setUserList(List<User> userList) {
-        this.userList = userList;
+
+
+
+
+    public static void printUsers () {
+
+        ObjectMapper mapper = new ObjectMapper();
+
+        try {
+            List<User> userList = new ArrayList<>(List.of(mapper.readValue(Paths.get("src/main/resources/userList.json").toFile(),User[].class)));
+
+
+
+            for(User item: userList){
+
+                System.out.println("Username: " + item.getUsername());
+
+
+            }
+
+
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+
     }
+
 }
+
+
+
+
+
+
+
 
 
 

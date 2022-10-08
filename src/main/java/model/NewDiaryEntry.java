@@ -4,7 +4,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.List;
 
 public class NewDiaryEntry {
@@ -16,29 +15,29 @@ public class NewDiaryEntry {
     private String date;
     private String userName;
 
+    private static User user;
+
     private List<NewDiaryEntry> diaryList;
 
 
     //CONSTRUCTORS
+
 
     public NewDiaryEntry(String title, String mainText, String date, String userName) {
         this.title = title;
         this.mainText = mainText;
         this.date = date;
         this.userName = userName;
-
     }
 
 
     public NewDiaryEntry(String userName) {
         this.userName = userName;
-
     }
 
     public NewDiaryEntry() {
+
     }
-
-
 
     //GETTERS AND SETTERS
 
@@ -81,17 +80,26 @@ public class NewDiaryEntry {
         this.userName = userName;
     }
 
+    public static User getUser() {
+        return user;
+    }
 
-    public void printDiary() throws IOException {
+    public static void setUser(User user) {
+        NewDiaryEntry.user = user;
+    }
+
+    public static void printDiary() throws IOException {
 
         ObjectMapper mapper = new ObjectMapper();
 
 
-        List<NewDiaryEntry> printList = new ArrayList<>(List.of(mapper.readValue(Paths.get("src/main/resources/diaryEntries.json").toFile(), NewDiaryEntry.class)));
+
+        List<NewDiaryEntry> temp =List.of(mapper.readValue(Paths.get("src/main/resources/diaryEntries.json").toFile(), NewDiaryEntry[].class));
 
 
-        for (NewDiaryEntry item : printList) {
 
+        for (NewDiaryEntry item : temp) {
+            //  TODO check for no entry
             System.out.println("Title: " + item.getTitle());
             System.out.println("Main text: " + item.getMainText());
             System.out.println("Date:  " + item.getDate());
@@ -101,7 +109,16 @@ public class NewDiaryEntry {
 
     }
 
+    @Override
+    public String toString() {
+        return "{" +
+                "title='" + title + '\'' +
+                ", mainText='" + mainText + '\'' +
+                ", date='" + date + '\'' +
+                ", userName='" + userName + '\'' +
+                '}';
     }
+}
 
 
 

@@ -11,29 +11,24 @@ public class User {
 
     private String username;
     private static String activeUser;
-    private static String activeUserName;
+
 
     private List<User> userList;
 
 
-    public User(String username, String activeUser, String user) {
+    public User(String username, List<User> userList) {
         this.username = username;
-        this.activeUser = activeUser;
-        this.activeUserName = user;
-        this.userList = new ArrayList<>();
+        this.userList = userList;
     }
-
 
     public User() {
 
     }
 
 
-
     public String getUsername() {
         return username;
     }
-
 
 
     public static String getActiveUser() {
@@ -48,38 +43,26 @@ public class User {
         User.activeUser = activeUser;
     }
 
-    public static String getActiveUserName() {
-        return activeUserName;
-    }
-
-    public static void setActiveUserName(String activeUserName) {
-        User.activeUserName = activeUserName;
-    }
 
     public List<User> getUserList() {
         return userList;
     }
 
 
-
-
-
-    public static void printUsers () {
+    public static void printUsers() {
 
         ObjectMapper mapper = new ObjectMapper();
 
         try {
-            List<User> userList = new ArrayList<>(List.of(mapper.readValue(Paths.get("src/main/resources/userList.json").toFile(),User[].class)));
+            List<User> userList = new ArrayList<>(List.of(mapper.readValue(Paths.get("src/main/resources/userList.json").toFile(), User[].class)));
 
 
-
-            for(User item: userList){
+            for (User item : userList) {
 
                 System.out.println("Username: " + item.getUsername());
 
 
             }
-
 
 
         } catch (IOException e) {
@@ -88,10 +71,7 @@ public class User {
 
 
     }
-
 }
-
-
 
 
 

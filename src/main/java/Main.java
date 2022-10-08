@@ -1,4 +1,5 @@
 import com.fasterxml.jackson.databind.ObjectMapper;
+import model.NewDiaryEntry;
 import model.User;
 
 import java.io.IOException;
@@ -19,9 +20,11 @@ public class Main {
 
         //OLD JSON ENTRIES ARE READ BACK AND SAVED INTO TEMP ARRAY
 
-        List<Diary> diaryList = new ArrayList<>();
-        List<Diary> tempDiary = List.of(mapper.readValue(Paths.get("src/main/resources/diaryEntries.json").toFile(), Diary[].class));
+        List<NewDiaryEntry> diaryList = new ArrayList<>();
+        List<NewDiaryEntry> tempDiary = List.of(mapper.readValue(Paths.get("src/main/resources/diaryEntries.json").toFile(), NewDiaryEntry[].class));
         diaryList.addAll(tempDiary);
+
+
 
 
         int menu = 1;

@@ -3,183 +3,188 @@ import model.NewDiaryEntry;
 import model.User;
 
 import java.io.IOException;
-import java.nio.file.Paths;
 import java.util.List;
-import java.util.Objects;
 import java.util.Scanner;
 
 public class SwitchMenu {
 
 
-    public static int switchMenu1(int choice, List<User> userList, List<Diary> diaryList) throws IOException {
+    public static int switchMenu1(int choice, List<User> userList, List<NewDiaryEntry> diaryList) throws IOException {
         Scanner scanner = new Scanner(System.in);
 
 
         int menuChoice = 1;
-        switch (choice) {
 
-            //USER CAN CREATE A NEW USERNAME
+        while (menuChoice == 1) {
 
-            case 1:
+            switch (choice) {
 
-                System.out.println("Please type in your desired user name");
+                //USER CAN CREATE A NEW USERNAME
+
+                case 1:
+
+                    //CREATE NEW USER
+
+                    System.out.println("Please type in your desired user name");
 //
-                String chosenName = scanner.nextLine();
+                    String chosenName = scanner.nextLine();
 
-                // NEW USER CREATED AND NAME IS SET. USER IS ALSO ADDED TO USERS LIST. LIST IS FINALLY ADDED TO JSON FILE
-                User newUser = new User();
-                newUser.setUsername(chosenName);
-                userList.add(newUser);
-                WriteReadJson.UsersToJason(userList);
-
-
-                //The newly created user becomes the "active user"
-                User.setActiveUserName(chosenName);
-                User.setActiveUser(chosenName);
-
-                //A New Diary is Created in the name of user. Diary is then added to list.
-                Diary diary = new Diary(newUser);
-                diaryList.add(diary);
+                    // NEW USER CREATED AND NAME IS SET. USER IS ALSO ADDED TO USERS LIST. LIST IS FINALLY ADDED TO JSON FILE
+                    User newUser = new User();
+                    newUser.setUsername(chosenName);
+                    userList.add(newUser);
+                    WriteReadJson.UsersToJason(userList);
 
 
-                System.out.println("Welcome " + newUser.getActiveUserName() + "!" + " You can now start using your new diary.");
-                System.out.println("");
+                    //The newly created user becomes the "active user"
+                    User.setActiveUser(chosenName);
 
 
-                menuChoice = 2;
-                break;
+                    NewDiaryEntry newDiaryEntry = new NewDiaryEntry(chosenName);
 
 
-            case 2:
-                // CREATE NEW USER
+                    System.out.println("Welcome " + newUser.getActiveUser() + "!" + " You can now start using your new diary.");
+                    System.out.println("");
 
 
-                User.printUsers();
+                    menuChoice = 2;
+                    break;
 
-                ObjectMapper mapper = new ObjectMapper();
-                List<User> tempUserList = List.of(mapper.readValue(Paths.get("src/main/resources/userList.json").toFile(), User[].class));
+                case 2:
 
-                System.out.println("Please choose username. Type in to continue");
+                    //PRINT USERS
 
-                String desiredUser = scanner.nextLine();
+                    User.printUsers();
+
+//                ObjectMapper mapper = new ObjectMapper();
+//                List<User> tempUserList = List.of(mapper.readValue(Paths.get("src/main/resources/userList.json").toFile(), User[].class));
+
+                    System.out.println("Please choose username. Type in to continue");
+
+                    String desiredUser = scanner.nextLine();
 
 
-                for (User item : tempUserList) {
+                    for (User item : userList) {
 
-                    if (item.getUsername().equalsIgnoreCase(desiredUser)) {
+                        if (item.getUsername().equalsIgnoreCase(desiredUser)) {
 
-                        User.setActiveUserName(desiredUser);
+                            User.setActiveUser(desiredUser);
 
-                        System.out.println("This diary belongs to " + User.getActiveUserName());
+                            System.out.println("This diary belongs to " + User.getActiveUserName());
 
-                        OptionsMenu.optionsAndChoice2();
-                    } else {
-                        System.out.println("That name is not in the list. Please try again!");
+                            menuChoice = 2;
+
+
+                        } else {
+                            System.out.println("That name is not in the list. Please try again!");
+                            menuChoice = 2;
+                        }
+
+
+                        break;
 
                     }
 
-                    menuChoice = 2;
 
+                case 3:
 
                     break;
 
-                }
 
-
-            case 3:
-
-                break;
-
-            default:
+            }
 
 
         }
-
         return menuChoice;
     }
 
 
 
-    public static int switchMenu2(int choice, List diaryList) throws IOException {
 
-        Scanner scanner = new Scanner (System.in);
+    public static int switchMenu2(int choice, List<NewDiaryEntry> diaryList) throws IOException {
+
+        //Bringing in active user into this switch method
+
+        String activeUser = User.getActiveUser();
+        NewDiaryEntry diaryEntry = new NewDiaryEntry();
+        diaryEntry.setUserName(activeUser);
+
+
+        Scanner scanner = new Scanner(System.in);
         int menuChoice = 2;
 
-        switch (choice) {
+        while (menuChoice == 2) {
+
+            switch (choice) {
 
 
-            //PRESENTS OLD DIARY ENTRIES
+                //PRESENTS OLD DIARY ENTRIES
 
-            case 1:
+                case 1:
 
-                ObjectMapper mapper = new ObjectMapper();
+                    ObjectMapper mapper = new ObjectMapper();
 
-                //READS FROM JSON FILE
-                List<Diary> tempList = List.of(mapper.readValue(Paths.get("src/main/resources/diaryEntries").toFile(), Diary[].class));
 
-                for (Diary item : tempList) {
-                    if (Objects.equals(User.getActiveUser(), item.getUser().getUsername())) {
-                        item.printDiary();
+                    //READS FROM JSON FILE
+//                List<Diary> tempList = List.of(mapper.readValue(Paths.get("src/main/resources/diaryEntries").toFile(), Diary[].class));
+
+
+                    for (NewDiaryEntry item : diaryList) {
+                        if (activeUser.equalsIgnoreCase(diaryEntry.getUserName())) {
+                            item.printDiary();
                         }
                     }
 
 
-                menuChoice = 2;
-                break;
+                    menuChoice = 2;
+                    break;
 
 
                 //Create New Entry
-            case 2:
+                case 2:
 
 
-                String activeUser = User.getActiveUserName();
-                NewDiaryEntry newDiaryEntry = new NewDiaryEntry(activeUser);
+                    System.out.println("Please enter title");
+                    String title = scanner.nextLine();
+                    diaryEntry.setTitle(title);
 
-                System.out.println(newDiaryEntry.getUserName());
+                    System.out.println("Please enter main text");
+                    String mainText = scanner.nextLine();
+                    diaryEntry.setMainText(mainText);
 
+                    System.out.println("Title: " + diaryEntry.getTitle());
+                    System.out.println("Main Text: " + diaryEntry.getMainText());
 
-                System.out.println("Please enter title");
-                String title = scanner.nextLine();
-                newDiaryEntry.setTitle(title);
+                    diaryList.add(diaryEntry);
 
-                System.out.println("Please enter main text");
-                String mainText = scanner.nextLine();
-                newDiaryEntry.setMainText(mainText);
+                    WriteReadJson.DiaryToJason(diaryList);
 
-                System.out.println("Title: " + newDiaryEntry.getTitle());
-                System.out.println("Main Text: " + newDiaryEntry.getMainText());
+                    menuChoice = 2;
+                    OptionsMenu.optionsAndChoice2();
+                    break;
 
-                diaryList.add(newDiaryEntry);
+                case 3:
 
-                WriteReadJson.DiaryToJason(diaryList);
+                    menuChoice = 1;
+                    break;
 
-                menuChoice = 2;
-                break;
+                case 4:
+                    break;
 
-            case 3:
+                default:
+                    System.out.println("You entered an invalid option");
+                    break;
 
-                menuChoice = 1;
-                break;
-
-            case 4:
-                break;
-
-            default:
-                System.out.println("You entered an invalid option");
-                break;
+            }
 
 
         }
-
         return menuChoice;
+    }
+
     }
 
 
 
 
 
-
-
-
-
-}

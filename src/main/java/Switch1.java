@@ -28,7 +28,7 @@ public class Switch1 {
 
 
                 case 1: //CREATE USER
-                    System.out.println("Please type in your desired user name");
+                    System.out.println("Please give a user name");
                     scanner.nextLine();
                     String chosenName = scanner.nextLine();
                     newUser = new User();
@@ -52,16 +52,15 @@ public class Switch1 {
 
                     User.printUsers();
                     if (userList.isEmpty()) {
-                        System.out.println(" There are no users in the list. Please register before writing your first entry");
+                        System.out.println("There are no users in the list. Please register before writing your first entry");
                         break;
 
                     } else {
 
                         System.out.println("Please select which username you want to sign in with");
+                        scanner.nextLine();
                     }
 
-
-                    scanner.nextLine();
 
                     String desiredUser = scanner.nextLine();
 

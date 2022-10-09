@@ -27,8 +27,8 @@ public class Switch2 {
             while (runProgam) {
 
                 System.out.println("Please choose one of the options below by typing a number");
-                System.out.println("1. Display Old Entries");
-                System.out.println("2. Create New Entry");
+                System.out.println("1. Create New Entry");
+                System.out.println("2. Display Old Entries");
                 System.out.println("3. Return to the first menu");
                 System.out.println("4. Quit Programme");
 
@@ -38,8 +38,27 @@ public class Switch2 {
                 switch (switchChoice) {
 
 
-                    //DISPLAY OLD DIARY ENTRIES
+                    //Create New Entry
                     case 1:
+
+                        diaryEntry = new NewDiaryEntry(activeUser);
+                        scanner.nextLine();
+                        System.out.println("Please enter title");
+                        String title = scanner.nextLine();
+                        diaryEntry.setTitle(title);
+                        System.out.println("Please enter main text");
+                        String mainText = scanner.nextLine();
+                        diaryEntry.setMainText(mainText);
+                        System.out.println("Title: " + diaryEntry.getTitle());
+                        System.out.println("Main Text: " + diaryEntry.getMainText());
+                        diaryList.add(diaryEntry);
+                        WriteReadJson.DiaryToJason(diaryList);
+
+                        System.out.println("TESTING");
+                        break;
+                    //DISPLAY OLD DIARY ENTRIES
+
+                    case 2:
 
 
 
@@ -59,24 +78,7 @@ public class Switch2 {
                         break;
 
 
-                    //Create New Entry
-                    case 2:
 
-                        diaryEntry = new NewDiaryEntry(activeUser);
-                        scanner.nextLine();
-                        System.out.println("Please enter title");
-                        String title = scanner.nextLine();
-                        diaryEntry.setTitle(title);
-                        System.out.println("Please enter main text");
-                        String mainText = scanner.nextLine();
-                        diaryEntry.setMainText(mainText);
-                        System.out.println("Title: " + diaryEntry.getTitle());
-                        System.out.println("Main Text: " + diaryEntry.getMainText());
-                        diaryList.add(diaryEntry);
-                        WriteReadJson.DiaryToJason(diaryList);
-
-                        System.out.println("TESTING");
-                        break;
 
                     case 3:
                         ObjectMapper mapper = new ObjectMapper();
@@ -84,6 +86,8 @@ public class Switch2 {
                         List<User> userList = new ArrayList<>();
                         List<User> tempUser = List.of(mapper.readValue(Paths.get("src/main/resources/userList.json").toFile(), User[].class));
                         userList.addAll(tempUser);
+
+
 
                         Switch1.switchMenu1(diaryList, userList);
                         break;

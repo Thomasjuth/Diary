@@ -25,25 +25,25 @@ public class Main {
         diaryList.addAll(tempDiary);
 
 
-        boolean programRunning = true;
-            while(programRunning){
+               Switch1.switchMenu1(diaryList, userList);
 
-
-                int optionChoice = OptionsMenu.optionsAndChoice1();
-                programRunning = SwitchMenu.switchMenu1(optionChoice, true, userList);
-                // TODO add exit
-
-
-
-                int optionsChoice2 = OptionsMenu.optionsAndChoice2();
-                programRunning = SwitchMenu.switchMenu2(optionsChoice2,true, diaryList); //TODO change required3
 
         }
 
-                }
 
 
-            }
+
+    }
+
+
+
+
+
+
+
+
+
+
 
 
 

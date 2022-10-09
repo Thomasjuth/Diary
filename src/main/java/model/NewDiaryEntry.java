@@ -23,13 +23,6 @@ public class NewDiaryEntry {
     //CONSTRUCTORS
 
 
-    public NewDiaryEntry(String title, String mainText, String date, String userName) {
-        this.title = title;
-        this.mainText = mainText;
-        this.date = date;
-        this.userName = userName;
-    }
-
 
     public NewDiaryEntry(String userName) {
         this.userName = userName;
@@ -41,13 +34,9 @@ public class NewDiaryEntry {
 
     //GETTERS AND SETTERS
 
-    public List<NewDiaryEntry> getDiaryList() {
-        return diaryList;
-    }
 
-    public void setDiaryList(List<NewDiaryEntry> diaryList) {
-        this.diaryList = diaryList;
-    }
+
+
 
     public String getTitle() {
         return title;
@@ -94,16 +83,23 @@ public class NewDiaryEntry {
 
 
 
-        List<NewDiaryEntry> temp =List.of(mapper.readValue(Paths.get("src/main/resources/diaryEntries.json").toFile(), NewDiaryEntry[].class));
+        List<NewDiaryEntry> temp = List.of(mapper.readValue(Paths.get("src/main/resources/diaryEntries.json").toFile(), NewDiaryEntry[].class));
 
-
-
+        System.out.println("Hey Hey");
         for (NewDiaryEntry item : temp) {
-            //  TODO check for no entry
-            System.out.println("Title: " + item.getTitle());
-            System.out.println("Main text: " + item.getMainText());
-            System.out.println("Date:  " + item.getDate());
 
+            System.out.println("Hey Hey");
+            if (temp == null) {
+                System.out.println("Your diary is empty. There are no entries to print");
+
+            }
+
+            else {
+
+                System.out.println("Title: " + item.getTitle());
+                System.out.println("Main text: " + item.getMainText());
+                System.out.println("Date:  " + item.getDate());
+            }
 
         }
 
@@ -111,12 +107,12 @@ public class NewDiaryEntry {
 
     @Override
     public String toString() {
-        return "{" +
-                "title='" + title + '\'' +
-                ", mainText='" + mainText + '\'' +
-                ", date='" + date + '\'' +
-                ", userName='" + userName + '\'' +
-                '}';
+        return
+                "Title: " + title + "\n" +
+                "Main Text: " + mainText + "\n" +
+                "Date: '" + date + "\n" +
+                "Username: " + userName + "\n"
+               ;
     }
 }
 

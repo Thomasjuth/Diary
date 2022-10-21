@@ -43,7 +43,7 @@ public class Switch1 {
 
                     createUser(diaryList,  userList);
 
-                    Switch2.switchMenu2(diaryList);
+                    Switch2.switchMenu2(diaryList, userList);
 
                     break;
 
@@ -70,7 +70,7 @@ public class Switch1 {
                     setActiveUser(userList, desiredUser);
 
                     // We now go to menu 2...
-                    Switch2.switchMenu2(diaryList);
+                    Switch2.switchMenu2(diaryList, userList);
                     break;
 
 
@@ -108,7 +108,7 @@ public class Switch1 {
 
 
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Please give a user name");
+        System.out.println("Woohoo! A new user! What is your name my friend?");
         String chosenName = scanner.nextLine();
         User newUser = new User();
         newUser.setUsername(chosenName);

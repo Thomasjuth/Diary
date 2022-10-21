@@ -1,20 +1,17 @@
 package service;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import model.NewDiaryEntry;
 import model.User;
 
 import java.io.IOException;
-import java.nio.file.Paths;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class Switch2 {
 
 
-        public static void switchMenu2(List <NewDiaryEntry> diaryList) throws IOException, InterruptedException {
+        public static void switchMenu2(List <NewDiaryEntry> diaryList, List <User> userList) throws IOException, InterruptedException {
 
 
 
@@ -32,7 +29,7 @@ public class Switch2 {
                 System.out.println("------------------------------");
                 System.out.println("1. Create New Entry");
                 System.out.println("2. Display Old Entries");
-                System.out.println("3. Return to the first menu");
+                System.out.println("3. Return to First Menu");
                 System.out.println("9. Quit");
 
                 int switchChoice = scanner.nextInt();
@@ -81,14 +78,18 @@ public class Switch2 {
 
 
                     case 3:
-                        ObjectMapper mapper = new ObjectMapper();
+//
 
-                        List<User> userList = new ArrayList<>();
-                        List<User> tempUser = List.of(mapper.readValue(Paths.get("src/main/resources/userList.json").toFile(), User[].class));
-                        userList.addAll(tempUser);
-
-
-
+                        System.out.println("Returning back to Menu 1...in..");
+                        Thread.sleep(500);
+                        System.out.println("3");
+                        Thread.sleep(500);
+                        System.out.println("2");
+                        Thread.sleep(500);
+                        System.out.println("1");
+                        Thread.sleep(500);
+                        System.out.println("Lift off!");
+                        Thread.sleep(300);
                         Switch1.switchMenu1(diaryList, userList);
                         break;
 
@@ -116,8 +117,12 @@ public class Switch2 {
 
         }
 
-        public static NewDiaryEntry createNewEntry(String activeUser, Scanner scanner) {
+        public static NewDiaryEntry createNewEntry(String activeUser, Scanner scanner) throws InterruptedException {
 
+            System.out.println("What is on your mind today " + User.getActiveUser() + "?");
+            Thread.sleep(300);
+
+            System.out.println("_______________________________________");
             NewDiaryEntry diaryEntry = null;
             System.out.println("Please enter title");
             scanner.nextLine();
@@ -129,7 +134,7 @@ public class Switch2 {
             String date = LocalDate.now().toString();
             diaryEntry = new NewDiaryEntry(title, mainText, activeUser, date);
             System.out.println("Thank you for sharing! Your secrets are safe with me.");
-            System.out.println("-----------------------------------");
+            System.out.println(":)");
 
 
             return diaryEntry;

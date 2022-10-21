@@ -57,7 +57,7 @@ public class Switch1 {
 
                     } else {
 
-                        System.out.println("Please select which username you want to sign in with");
+                        System.out.println("Please select user name and type it in below");
                         scanner.nextLine();
                     }
 
@@ -65,7 +65,7 @@ public class Switch1 {
                     String desiredUser = scanner.nextLine();
 
                     for (User item : userList) {
-//                        User.printUsers();
+//
                         if (desiredUser.equalsIgnoreCase(item.getUsername())) {
                             User.setActiveUser(desiredUser);
 

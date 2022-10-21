@@ -4,6 +4,7 @@ import model.User;
 
 import java.io.IOException;
 import java.nio.file.Paths;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -49,23 +50,24 @@ public class Switch2 {
                         System.out.println("Please enter main text");
                         String mainText = scanner.nextLine();
                         diaryEntry.setMainText(mainText);
+                        String date = LocalDate.now().toString();
+                        diaryEntry.setDate(date);
                         System.out.println("Title: " + diaryEntry.getTitle());
                         System.out.println("Main Text: " + diaryEntry.getMainText());
                         diaryList.add(diaryEntry);
                         WriteReadJson.DiaryToJason(diaryList);
 
-                        System.out.println("TESTING");
                         break;
+
+
+
                     //DISPLAY OLD DIARY ENTRIES
 
                     case 2:
 
-
-
-
                         for (NewDiaryEntry item : diaryList) {
                             if (activeUser.equalsIgnoreCase(item.getUserName())) {
-//                                NewDiaryEntry.printDiary();
+//
                                 System.out.println(item.toString());
 
 

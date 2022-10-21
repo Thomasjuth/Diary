@@ -6,34 +6,37 @@ import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.List;
 
+
+
 public class NewDiaryEntry {
 
 
     private String title;
 
     private String mainText;
-    private String date;
+
     private String userName;
 
     private static User user;
 
+    private String date;
+
     private List<NewDiaryEntry> diaryList;
+
+
 
 
     //CONSTRUCTORS
 
 
-
     public NewDiaryEntry(String userName) {
         this.userName = userName;
+
     }
 
     public NewDiaryEntry() {
 
     }
-
-    //GETTERS AND SETTERS
-
 
 
 
@@ -56,10 +59,6 @@ public class NewDiaryEntry {
         this.mainText = mainText;
     }
 
-    public String getDate() {
-        return date;
-    }
-
 
     public String getUserName() {
         return userName;
@@ -75,6 +74,14 @@ public class NewDiaryEntry {
 
     public static void setUser(User user) {
         NewDiaryEntry.user = user;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 
     public static void printDiary() throws IOException {
@@ -98,7 +105,7 @@ public class NewDiaryEntry {
 
                 System.out.println("Title: " + item.getTitle());
                 System.out.println("Main text: " + item.getMainText());
-                System.out.println("Date:  " + item.getDate());
+
             }
 
         }
@@ -110,8 +117,8 @@ public class NewDiaryEntry {
         return
                 "Title: " + title + "\n" +
                 "Main Text: " + mainText + "\n" +
-                "Date: '" + date + "\n" +
-                "Username: " + userName + "\n"
+                "Username: " + userName + "\n" +
+                "Date: " + date + "\n"
                ;
     }
 }

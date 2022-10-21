@@ -1,10 +1,5 @@
 package model;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-
-import java.io.IOException;
-import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.List;
 
 public class User {
@@ -49,28 +44,6 @@ public class User {
     }
 
 
-    public static void printUsers() {
-
-        ObjectMapper mapper = new ObjectMapper();
-
-        try {
-            List<User> userList = new ArrayList<>(List.of(mapper.readValue(Paths.get("src/main/resources/userList.json").toFile(), User[].class)));
-
-
-            for (User item : userList) {
-
-                System.out.println("Username: " + item.getUsername());
-
-
-            }
-
-
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-
-
-    }
 }
 
 

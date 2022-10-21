@@ -29,10 +29,19 @@ public class NewDiaryEntry {
     //CONSTRUCTORS
 
 
+    public NewDiaryEntry(String title, String mainText, String userName, String date) {
+        this.title = title;
+        this.mainText = mainText;
+        this.userName = userName;
+        this.date = date;
+    }
+
     public NewDiaryEntry(String userName) {
         this.userName = userName;
 
     }
+
+
 
     public NewDiaryEntry() {
 

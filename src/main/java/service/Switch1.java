@@ -32,14 +32,14 @@ public class Switch1 {
 
 
 
-            int switchChoice = scanner.nextInt();
+            String switchChoice = scanner.nextLine();
 
 
 
             switch (switchChoice) {
 
 
-                case 1: //CREATE USER
+                case "1": //CREATE USER
 
                     createUser(diaryList,  userList);
 
@@ -48,7 +48,7 @@ public class Switch1 {
                     break;
 
 
-                case 2:
+                case "2":
 
                     //PRINT USERS
 
@@ -60,14 +60,15 @@ public class Switch1 {
                     } else {
 
                         System.out.println("Please select user name and type it in below");
-                        scanner.nextLine();
+
                     }
 
                     // User chooses desired UserName
                     String desiredUser = scanner.nextLine();
 
+
                     // Active User is set!
-                    setActiveUser(userList, desiredUser);
+                    setActiveUser(userList, desiredUser, diaryList);
 
                     // We now go to menu 2...
                     Switch2.switchMenu2(diaryList, userList);
@@ -76,12 +77,11 @@ public class Switch1 {
 
                     //QUIT PROGRAMME
 
-                case 9:
+                case "9":
 
 
                     System.out.println("Why are you leaving so soon?");
-                    Thread.sleep(400);
-                    System.out.println("Didn't you like the program?");
+
                     Thread.sleep(400);
 
                     for(int x = 1; x < 5; x++) {
@@ -93,6 +93,10 @@ public class Switch1 {
                     runProgam = false;
                     break;
 
+                default:
+                    System.out.println("Hm. I am not sure what you are trying to tell me. Please type in numbers only!");
+                    System.out.println(":/");
+                    break;
 
             }
 
@@ -144,25 +148,37 @@ public class Switch1 {
 
     }
     
-    public static void setActiveUser(List<User> userList, String desiredUser) {
+    public static void setActiveUser(List<User> userList, String desiredUser, List<NewDiaryEntry> diaryList) throws IOException, InterruptedException {
 
         for (User item : userList) {
 //
             if (desiredUser.equalsIgnoreCase(item.getUsername())) {
                 User.setActiveUser(desiredUser);
+            }
+
+
+
 
             }
 
 
-        }
+        if(User.getActiveUser() == null){
 
-        System.out.println("Active User: " + User.getActiveUser());
+            System.out.println("That user does not exist...Try again!");
+            Switch1.switchMenu1(diaryList, userList);
+        }
+        System.out.println("You are now logged in as: " + User.getActiveUser());
+
+
+    }
+
+
 //                    System.out.println("This diary belongs to " + User.getActiveUser().toString());
 
 
 
     }
-    }
+
 
 
 

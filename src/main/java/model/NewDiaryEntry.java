@@ -126,7 +126,7 @@ public class NewDiaryEntry {
         return
                 "Title: " + title + "\n" +
                 "Main Text: " + mainText + "\n" +
-                "Username: " + userName + "\n" +
+                "User: " + userName + "\n" +
                 "Date: " + date + "\n"
                ;
     }

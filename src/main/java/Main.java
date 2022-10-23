@@ -21,7 +21,7 @@ public class Main {
         List<User> userList = readFromUsersList(mapper);
         List<NewDiaryEntry> diaryList = readFromDiaryList(mapper);
 
-
+        welcomeMessage();
         // Takes us to Menu 1
                Switch1.switchMenu1(diaryList, userList);
 
@@ -53,6 +53,16 @@ public class Main {
     }
 
 
+    public static void welcomeMessage () throws InterruptedException {
+
+
+        System.out.println("Welcome!");
+        Thread.sleep(200);
+
+        System.out.println("I am glad you feel like sharing your secrets with me");
+        Thread.sleep(100);
+        System.out.println(" :) ");
+    }
     }
 
 

@@ -81,15 +81,15 @@ public class Switch2 {
 //
 
                         System.out.println("Returning back to Menu 1...in..");
-                        Thread.sleep(500);
+                        Thread.sleep(100);
                         System.out.println("3");
-                        Thread.sleep(500);
+                        Thread.sleep(100);
                         System.out.println("2");
-                        Thread.sleep(500);
+                        Thread.sleep(100);
                         System.out.println("1");
-                        Thread.sleep(500);
+                        Thread.sleep(100);
                         System.out.println("Lift off!");
-                        Thread.sleep(300);
+                        Thread.sleep(100);
                         Switch1.switchMenu1(diaryList, userList);
                         break;
 

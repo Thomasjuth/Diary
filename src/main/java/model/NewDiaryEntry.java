@@ -1,13 +1,13 @@
 package model;
 
 /**
- *  <p>The is my second POJO class, used to create new Diary Entry objects.
- *  Its main purpose is to offer a way to set and get username and active user. <br>
+ * <p>The is my second POJO class, used to create new Diary Entry objects.
+ * Its main purpose is to offer a way to set and get username and active user. <br>
  *
  *
- *  </p>
+ * </p>
+ *
  * @author thomasjuth
- *
  */
 
 public class NewDiaryEntry {
@@ -22,10 +22,6 @@ public class NewDiaryEntry {
     private static User user;
 
     private String date;
-
-
-
-
 
 
     //CONSTRUCTORS
@@ -45,12 +41,9 @@ public class NewDiaryEntry {
     }
 
 
-
     public NewDiaryEntry() {
 
     }
-
-
 
 
     public String getTitle() {
@@ -97,19 +90,15 @@ public class NewDiaryEntry {
     }
 
 
-
-
-
-
     @Override
     public String toString() {
         return
 
                 "Title: " + title + "\n" +
-                "Main Text: " + mainText + "\n" +
-                "User: " + userName + "\n" +
-                "Date: " + date + "\n"
-               ;
+                        "Main Text: " + mainText + "\n" +
+                        "User: " + userName + "\n" +
+                        "Date: " + date + "\n"
+                ;
     }
 }
 

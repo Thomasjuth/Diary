@@ -10,11 +10,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-
 /**
- *  <p>The is the main class</p>
- * @author thomasjuth
+ * <p>The is the main class</p>
  *
+ * @author thomasjuth
  */
 
 

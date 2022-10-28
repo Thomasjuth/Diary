@@ -12,10 +12,10 @@ import java.util.List;
 import java.util.Scanner;
 
 /**
- *  <p>This class holds a bunch a methods, which all relate to the first menu and options. They are all linked to
- *  *  the creation and display of users</p>
- * @author thomasjuth
+ * <p>This class holds a bunch a methods, which all relate to the first menu and options. They are all linked to
+ * *  the creation and display of users</p>
  *
+ * @author thomasjuth
  */
 
 
@@ -39,35 +39,24 @@ public class Switch1 {
 
             System.out.println(EmojiParser.parseToUnicode(":arrow_down: Please select an option!"));
             System.out.println("------------------------------");
-            System.out.println("1. Register a New User");
-            System.out.println("2. Choose User From List");
+            System.out.println("1. Select User");
+            System.out.println("2. Register a New User");
             System.out.println("9. Quit");
-
 
 
             String switchChoice = scanner.nextLine();
 
 
-
             switch (switchChoice) {
 
 
-                case "1": //CREATES USER
+                case "1":
 
-                    createUser(diaryList,  userList);
-
-                    Switch2.switchMenu2(diaryList, userList);
-
-                    break;
-
-
-                case "2":
-
-                    //PRINT USERS
+                    //Print users and select one
 
                     readUsersList();
                     if (userList.isEmpty()) {
-                        System.out.println("There are no users in the list. Please register before writing your first entry");
+                        System.out.println(EmojiParser.parseToUnicode(":eyes: There are no users in the list. Please register before writing your first entry"));
                         break;
 
                     } else {
@@ -88,9 +77,16 @@ public class Switch1 {
                     break;
 
 
-                    //QUIT PROGRAMME
+                case "2": //Create new user
 
-                case "9":
+                    createUser(diaryList, userList);
+
+                    Switch2.switchMenu2(diaryList, userList);
+
+                    break;
+
+
+                case "9": //QUIT PROGRAMME
                     System.out.println(EmojiParser.parseToUnicode(":cry: Why are you leaving so soon? "));
 
 
@@ -109,7 +105,6 @@ public class Switch1 {
         }
 
 
-
     }
 
     /**
@@ -117,25 +112,45 @@ public class Switch1 {
      * Finally activeUser is updated.
      */
 
-    public static void createUser(List<NewDiaryEntry> diaryList, List<User> userList){
+    public static void createUser(List<NewDiaryEntry> diaryList, List<User> userList) throws IOException, InterruptedException {
 
 
         Scanner scanner = new Scanner(System.in);
+
+
         System.out.println(EmojiParser.parseToUnicode(":partying_face: Woohoo! A new user! What is your name my friend?"));
+        System.out.println("(In case you change your mind, just type Q to return to the menu. No hard feelings.)");
 
         String chosenName = scanner.nextLine();
-        User newUser = new User();
-        newUser.setUsername(chosenName);
-        userList.add(newUser);
-        service.WriteReadJson.UsersToJason(userList);
-        User.setActiveUser(chosenName);
-        System.out.println("Welcome " + User.getActiveUser() + "!" + " You can now start using your new diary.");
 
-/**
- * This method is run if the user selects 2. UserList is printed!
+        switch (chosenName) {
 
- */
+            case "Q":
+
+            case "q":
+                switchMenu1(diaryList, userList);
+                break;
+
+
+            default:
+                User newUser = new User();
+                newUser.setUsername(chosenName);
+                userList.add(newUser);
+                service.WriteReadJson.UsersToJason(userList);
+                User.setActiveUser(chosenName);
+
+
+                System.out.println("Welcome " + User.getActiveUser() + "!" + " You can now start using your new diary.");
+
+        }
+
+
     }
+
+
+    /**
+     * This method is run if the user selects 2. UserList is printed!
+     */
 
     public static void readUsersList() {
 
@@ -162,7 +177,6 @@ public class Switch1 {
 
     /**
      * This method is used to set the activeUser, and used as part of Case 2. If this fails I have also prepared a message for that.
-
      */
     public static void setActiveUser(List<User> userList, String desiredUser, List<NewDiaryEntry> diaryList) throws IOException, InterruptedException {
 
@@ -173,12 +187,10 @@ public class Switch1 {
             }
 
 
+        }
 
 
-            }
-
-
-        if(User.getActiveUser() == null){
+        if (User.getActiveUser() == null) {
 
             System.out.println("That user does not exist...Try again!");
             Switch1.switchMenu1(diaryList, userList);
@@ -192,8 +204,7 @@ public class Switch1 {
 //                    System.out.println("This diary belongs to " + User.getActiveUser().toString());
 
 
-
-    }
+}
 
 
 

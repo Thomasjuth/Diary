@@ -9,8 +9,7 @@ import java.util.List;
 public class WriteReadJson {
 
 
-
-    public static void DiaryToJason(Object diaryEntry){
+    public static void DiaryToJason(Object diaryEntry) {
 
         ObjectMapper mapper = new ObjectMapper();
 
@@ -27,11 +26,10 @@ public class WriteReadJson {
         }
 
 
-
     }
 
 
-    public static void UsersToJason(List<User> entryList){
+    public static void UsersToJason(List<User> entryList) {
 
         ObjectMapper mapper = new ObjectMapper();
 
@@ -48,11 +46,7 @@ public class WriteReadJson {
         }
 
 
-
     }
-
-
-
 
 
 }

@@ -1,12 +1,14 @@
 package model;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-
-import java.io.IOException;
-import java.nio.file.Paths;
-import java.util.List;
-
-
+/**
+ *  <p>The is my second POJO class, used to create new Diary Entry objects.
+ *  Its main purpose is to offer a way to set and get username and active user. <br>
+ *
+ *
+ *  </p>
+ * @author thomasjuth
+ *
+ */
 
 public class NewDiaryEntry {
 
@@ -21,7 +23,7 @@ public class NewDiaryEntry {
 
     private String date;
 
-    private List<NewDiaryEntry> diaryList;
+
 
 
 
@@ -30,6 +32,7 @@ public class NewDiaryEntry {
 
 
     public NewDiaryEntry(String title, String mainText, String userName, String date) {
+
         this.title = title;
         this.mainText = mainText;
         this.userName = userName;
@@ -93,37 +96,15 @@ public class NewDiaryEntry {
         this.date = date;
     }
 
-    public static void printDiary() throws IOException {
-
-        ObjectMapper mapper = new ObjectMapper();
 
 
 
-        List<NewDiaryEntry> temp = List.of(mapper.readValue(Paths.get("src/main/resources/diaryEntries.json").toFile(), NewDiaryEntry[].class));
 
-        System.out.println("Hey Hey");
-        for (NewDiaryEntry item : temp) {
-
-            System.out.println("Hey Hey");
-            if (temp == null) {
-                System.out.println("Your diary is empty. There are no entries to print");
-
-            }
-
-            else {
-
-                System.out.println("Title: " + item.getTitle());
-                System.out.println("Main text: " + item.getMainText());
-
-            }
-
-        }
-
-    }
 
     @Override
     public String toString() {
         return
+
                 "Title: " + title + "\n" +
                 "Main Text: " + mainText + "\n" +
                 "User: " + userName + "\n" +

@@ -1,4 +1,5 @@
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.vdurmont.emoji.EmojiParser;
 import model.NewDiaryEntry;
 import model.User;
 import service.Switch1;
@@ -9,10 +10,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+
+/**
+ *  <p>The is the main class</p>
+ * @author thomasjuth
+ *
+ */
+
+
+
 public class Main {
 
 
+
+
+
     public static void main(String[] args) throws IOException, InterruptedException {
+
+
 
         ObjectMapper mapper = new ObjectMapper();
 
@@ -24,6 +39,8 @@ public class Main {
         welcomeMessage();
         // Takes us to Menu 1
                Switch1.switchMenu1(diaryList, userList);
+
+
 
 
         }
@@ -55,13 +72,12 @@ public class Main {
 
     public static void welcomeMessage () throws InterruptedException {
 
+        System.out.println(EmojiParser.parseToUnicode(":pencil: Welcome to your new Diary!"));
 
-        System.out.println("Welcome!");
         Thread.sleep(200);
-
-        System.out.println("I am glad you feel like sharing your secrets with me");
+        System.out.println(EmojiParser.parseToUnicode(":robot_face: Your secrets are safe with me"));
         Thread.sleep(100);
-        System.out.println(" :) ");
+        System.out.println("  ");
     }
     }
 

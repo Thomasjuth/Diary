@@ -1,5 +1,6 @@
 package service;
 
+import com.vdurmont.emoji.EmojiParser;
 import model.NewDiaryEntry;
 import model.User;
 
@@ -8,9 +9,19 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ *  <p>This class holds a few different methods, which all relate to the second menu and options. They are all linked to
+ *  the creation and display of diary entries</p>
+ * @author thomasjuth
+ *
+ */
+
+
 public class Switch2 {
 
-
+    /**
+     * This method first the first Second Menu and then takes the user unto the second Switch Menu.
+     */
         public static void switchMenu2(List <NewDiaryEntry> diaryList, List <User> userList) throws IOException, InterruptedException {
 
 
@@ -25,7 +36,7 @@ public class Switch2 {
 
             while (runProgram) {
 
-                System.out.println("Please Select an Option Below");
+                System.out.println(EmojiParser.parseToUnicode(":arrow_down: Please select an option!"));
                 System.out.println("------------------------------");
                 System.out.println("1. Create New Entry");
                 System.out.println("2. Display Old Entries");
@@ -68,8 +79,8 @@ public class Switch2 {
 
 
                         }
+                        System.out.println(EmojiParser.parseToUnicode(":stop_sign: Your diary is empty! Select '1' to create your first diary entry"));
 
-                        System.out.println("Your diary is empty! Select '1' to create your first diary entry");
                         System.out.println("-----------------------------------------------------------------");
 
                         break;
@@ -80,16 +91,9 @@ public class Switch2 {
                     case 3:
 //
 
-                        System.out.println("Returning back to Menu 1...in..");
-                        Thread.sleep(100);
-                        System.out.println("3");
-                        Thread.sleep(100);
-                        System.out.println("2");
-                        Thread.sleep(100);
-                        System.out.println("1");
-                        Thread.sleep(100);
-                        System.out.println("Lift off!");
-                        Thread.sleep(100);
+                        System.out.println(EmojiParser.parseToUnicode(":back: Taking you back!"));
+
+
                         Switch1.switchMenu1(diaryList, userList);
                         break;
 
@@ -97,9 +101,10 @@ public class Switch2 {
                     case 9:
 
                         System.out.println("Good Bye " + User.getActiveUser() + " :)");
+                        Thread.sleep(100);
                         Thread.sleep(200);
-                        Thread.sleep(200);
-                        System.out.println("Come Back Soon!");
+                        System.out.println(EmojiParser.parseToUnicode(":robot_face: Come Back Soon!"));
+
 
                         System.exit(666);
 
@@ -116,6 +121,13 @@ public class Switch2 {
             }
 
         }
+
+
+    /**
+     * This method is run if the user selects 1. It creates a new entry. It takes input and then sends that into the constructor of
+     * new object.
+     * @return This menthod returns a brand new diary entry.
+     */
 
         public static NewDiaryEntry createNewEntry(String activeUser, Scanner scanner) throws InterruptedException {
 

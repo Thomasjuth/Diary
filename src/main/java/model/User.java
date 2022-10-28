@@ -2,6 +2,18 @@ package model;
 
 import java.util.List;
 
+
+
+/**
+ *  <p>The is the Sser class. Its main purpose is to offer a way to set and get username and active user. <br>
+ *
+ *
+ *  </p>
+ * @author thomasjuth
+ *
+ */
+
+
 public class User {
 
     private String username;
@@ -12,6 +24,10 @@ public class User {
 
 
     public User(String username, List<User> userList) {
+        /**
+        @param
+         */
+
         this.username = username;
         this.userList = userList;
     }

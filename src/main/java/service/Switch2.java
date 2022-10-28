@@ -19,11 +19,11 @@ import java.util.Scanner;
 
 public class Switch2 {
 
+
     /**
      * This method first the first Second Menu and then takes the user unto the second Switch Menu.
      */
     public static void switchMenu2(List<NewDiaryEntry> diaryList, List<User> userList) throws IOException, InterruptedException {
-
 
 //
         Scanner scanner = new Scanner(System.in);
@@ -40,6 +40,7 @@ public class Switch2 {
             System.out.println("3. Return to First Menu");
             System.out.println("9. Quit");
 
+            //User types in his choice
             int switchChoice = scanner.nextInt();
 
 
@@ -47,65 +48,54 @@ public class Switch2 {
 
                 case 1: //Display old entries
 
-                    displayOldEntries(diaryList);
+                displayOldEntries(diaryList);
+
+            break;
 
 
-                    System.out.println("-----------------------------------------------------------------");
+            case 2: //Create new entry
 
-                    break;
-
-
-                case 2: //Create new entry
-
-                    //this calls this createNewEntry method, which returns our new entry. Voila!
-                    NewDiaryEntry diaryEntry = createNewEntry(activeUser, scanner);
+                //this calls this createNewEntry method, which returns our new entry. Voila!
+                NewDiaryEntry diaryEntry = createNewEntry(activeUser, scanner);
 
 //                      //this new diaryEntry is then added to diaryList
-                    diaryList.add(diaryEntry);
+                diaryList.add(diaryEntry);
+
+                //DiaryList is then added to JSON.
+                WriteReadJson.DiaryToJason(diaryList);
+
+                break;
+
+            //DISPLAY OLD DIARY ENTRIES
+            case 3:
+                System.out.println(EmojiParser.parseToUnicode(":back: Taking you back!"));
+                Switch1.switchMenu1(diaryList, userList);
+                break;
 
 
-                    //DiaryList is then added to JSON.
-                    WriteReadJson.DiaryToJason(diaryList);
+            case 9:
 
-                    break;
-
-
-                //DISPLAY OLD DIARY ENTRIES
-
-
-                case 3:
-//
-
-                    System.out.println(EmojiParser.parseToUnicode(":back: Taking you back!"));
+                System.out.println("Good Bye " + User.getActiveUser() + " :)");
+                Thread.sleep(100);
+                Thread.sleep(200);
+                System.out.println(EmojiParser.parseToUnicode(":robot_face: Come Back Soon!"));
 
 
-                    Switch1.switchMenu1(diaryList, userList);
-                    break;
+                System.exit(666);
 
+                break;
 
-                case 9:
+            default:
 
-                    System.out.println("Good Bye " + User.getActiveUser() + " :)");
-                    Thread.sleep(100);
-                    Thread.sleep(200);
-                    System.out.println(EmojiParser.parseToUnicode(":robot_face: Come Back Soon!"));
-
-
-                    System.exit(666);
-
-                    break;
-
-                default:
-
-                    System.out.println("You entered an invalid option");
-                    break;
-
-            }
-
+                System.out.println("You entered an invalid option");
+                break;
 
         }
 
+
     }
+
+}
 
 
     /**
@@ -120,7 +110,8 @@ public class Switch2 {
         System.out.println("What is on your mind today " + User.getActiveUser() + "?");
         Thread.sleep(300);
 
-        System.out.println("_______________________________________");
+
+        System.out.println(EmojiParser.parseToUnicode(":arrow_down:"));
         NewDiaryEntry diaryEntry = null;
         System.out.println("Please enter title");
         scanner.nextLine();
@@ -156,9 +147,6 @@ public class Switch2 {
 
                 System.out.println(item.toString());
 
-            } else if (!activeUser.equalsIgnoreCase(item.getUserName())) {
-                System.out.println(EmojiParser.parseToUnicode(":stop_sign: Your diary is still empty! There is nothing to show."));
-
 
             }
 
@@ -167,6 +155,7 @@ public class Switch2 {
     }
 
 }
+
 
 
 

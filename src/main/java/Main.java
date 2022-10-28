@@ -71,10 +71,9 @@ public class Main {
 
     public static void welcomeMessage () throws InterruptedException {
 
-        System.out.println(EmojiParser.parseToUnicode(":pencil: Welcome to your new Diary!"));
+        System.out.println(EmojiParser.parseToUnicode(":robot_face: Welcome to your new Diary!"));
 
-        Thread.sleep(200);
-        System.out.println(EmojiParser.parseToUnicode(":robot_face: Your secrets are safe with me"));
+
         Thread.sleep(100);
         System.out.println("  ");
     }

@@ -1,1 +1,21 @@
-[{"title":"Thomas Title","mainText":"Thomas Main Text","userName":"Thomas","date":"2022-10-28"}]
+[
+  {
+    "title": "Today was a great day!",
+    "mainText": "Today was a great day indeed! That's about it!",
+    "userName": "Thomas",
+    "date": "2022-10-28"
+  },
+  {
+    "title": "Gettin' Better All the Time",
+    "mainText": "It can't get much worse...",
+    "userName": "Thomas",
+    "date": "2022-10-28"
+  },
+  {
+    "title": "John's Title",
+    "mainText": "John's Main Text",
+    "userName": "John",
+    "date": "2022-10-28"
+  }
+
+]

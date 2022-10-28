@@ -1,1 +1,11 @@
-[{"username":"Thomas","userList":null}]
+[
+  {
+    "username": "Thomas",
+    "userList": null
+  },
+  {
+    "username": "John",
+    "userList": null
+  }
+
+]

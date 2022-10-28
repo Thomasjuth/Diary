@@ -119,7 +119,7 @@ public class Switch1 {
 
 
         System.out.println(EmojiParser.parseToUnicode(":partying_face: Woohoo! A new user! What is your name my friend?"));
-        System.out.println("(In case you change your mind, just type Q to return to the menu. No hard feelings.)");
+        System.out.println("(In case you change your mind, type Q to return to the menu.");
 
         String chosenName = scanner.nextLine();
 

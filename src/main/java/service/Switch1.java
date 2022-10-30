@@ -87,7 +87,7 @@ public class Switch1 {
 
 
                 case "9": //QUIT PROGRAMME
-                    System.out.println(EmojiParser.parseToUnicode(":cry: Why are you leaving so soon? "));
+                    System.out.println(EmojiParser.parseToUnicode(":cry: Good bye...come back soon! "));
 
 
                     runProgam = false;
